@@ -1,0 +1,24 @@
+stages:
+  - package
+  - deploy
+
+package:
+  stage: package
+  before_script:
+    - apt-get update && apt-get install -y zip
+  script:
+    - zip -r lambda.zip lambda
+  artifacts:
+    paths:
+      - lambda.zip
+    when: on_success
+
+deploy:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  dependencies:
+    - package
+  script:
+    # TODO: make bucket & file name variable if possible?
+    # TODO: add check if both file and bucket exist
+    - aws s3 cp lambda.zip s3://dev-kaching-portal-bucket
