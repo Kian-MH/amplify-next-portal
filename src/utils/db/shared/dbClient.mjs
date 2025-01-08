@@ -5,12 +5,6 @@ import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 const awsConfig = {
   region: 'eu-west-1',
 }
-if (process.env.NODE_ENV === 'development') {
-  awsConfig.credentials = {
-    accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY
-  };
-}
 
 const dbClient = new DynamoDBClient(awsConfig);
 const dynamoDbDocClient = DynamoDBDocumentClient.from(dbClient);

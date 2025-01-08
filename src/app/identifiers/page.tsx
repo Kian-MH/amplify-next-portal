@@ -21,7 +21,7 @@ const Page = () => {
     identifierSchema['properties']['entityGroup']['oneOf'] = options;
 
     return { identifiers, identifierSchema };
-  })).catch(err => { return { identifiers: [], identifierSchema: inCompleteIdentifierSchema } });;
+  });
   return (
     <>
       <div id='wrapper'>
