@@ -15,7 +15,7 @@ const scan = async (tableName: string) => {
     } else if (typeof err === 'string') {
       return new Response(err);
     } else {
-      return new Response('unknown error', { status: 500 });
+      return new Response(JSON.stringify([]), { status: 500 });
     }
   }
 }
