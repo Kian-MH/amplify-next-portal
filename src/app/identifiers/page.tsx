@@ -16,6 +16,7 @@ const Page = () => {
 
     // @ts-ignore
     const options = entityGroups.map(item => {return { const: item.id, title: item.group }});
+    options.push({ const: 'default', title: 'default' });
     const identifierSchema = inCompleteIdentifierSchema;
 
     identifierSchema['properties']['entityGroup']['oneOf'] = options;
