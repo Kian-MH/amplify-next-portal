@@ -6,14 +6,14 @@ const scan = async (tableName: string) => {
     const params = { TableName: tableName };
     const result = await dynamoDbDocClient.send(new ScanCommand(params));
     if (!result.Items) {
-      return new Response('Item not found', { status: 404 });
+      return new Response(JSON.stringify([]), { status: 404 });
     }
     return new Response(JSON.stringify(result.Items), { status: 200 });
   } catch (err) {
     if (err instanceof Error) {
-      return new Response(err.message, { status: 500 });
+      return new Response(JSON.stringify([]), { status: 500 });
     } else if (typeof err === 'string') {
-      return new Response(err);
+      return new Response(JSON.stringify([]));
     } else {
       return new Response(JSON.stringify([]), { status: 500 });
     }
